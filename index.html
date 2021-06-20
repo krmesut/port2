@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>P2P | Miner Console</title>
+	<link rel="shortcut icon" href="img/favicon.ico" />
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-wEmeIV1mKuiNpC+IOBjI7aAzPcEZeedi5yW5f2yOq55WWLwNGmvvx4Um1vskeMj0" crossorigin="anonymous" />
+	<link rel="stylesheet" href="css/bot.css" />
+	<!-- <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet" /> -->
+	<link rel="stylesheet" href="css/nes.css">
+</head>
+
+<body>
+
+	<nav class="
+        d-flex
+        justify-content-between
+        px-4
+        py-3
+        navbar navbar-dark
+        bg-dark
+      ">
+		<span class="navbar-brand">
+			<div class="css-zjphbf">
+				<h4>Port2play</h4>
+				<h6>DigiMine v1.0</h6>
+			</div>
+		</span>
+		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="flex-grow-0 navbar-collapse collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="/">Home</a>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Download
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<li>
+							<a class="dropdown-item" href="download/P2Pexten.zip" download="P2Pexten">(Extensions) Wax Auto Approve</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="https://antcpt.com/eng/download/google-chrome-options.html" target="_blank">(Extensions) AntiCaptcha</a>
+						</li>
+					</ul>
+				</li>
+				<li class="nav-item dropdown">
+					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						Donate
+					</a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<li>
+							<a class="dropdown-item" href="https://wax.bloks.io/account/xgis4.wam">Port2play Wax : xgis4.wam</a>
+						</li>
+						<li>
+							<a class="dropdown-item" href="https://wax.bloks.io/account/.nnee.wam">Dev : .nnee.wam</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+			<form class="form-inline">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<span class="input-group-text" id="btnGroupAddon">@</span>
+					</div>
+					<input type="text" placeholder="Username" aria-label="Username" id="text_username" class="form-control" />
+				</div>
+			</form>
+		</div>
+	</nav>
+
+	<div class="container">
+		<div class="pb-5 row">
+			<div class="col-lg-5">
+				<div class="sticky-top pt-lg-1">
+										<div class="d-flex justify-content-center">
+						<button type="button" class="nes-btn is-primary" id="btn_login" onclick="login()">
+						Login</button><button type="button" class="nes-btn is-primary" id="btn_update" onclick="UpdateUI(true)">
+						Update</button><button type="button" class="nes-btn is-success" onclick="mine_and_claim()">
+						Mine
+						</button>
+						</div>
+					<div class="nes-container with-title mb-1">
+						<h3 class="title">Account Info</h3>
+						<textarea id="LoggerText" class="nes-textarea" rows="3" disabled=""></textarea>
+
+
+						<div class="px-4 pt-3 row">
+							<div class="col">
+								<div class="mb-2 text-muted card-subtitle h6">
+									Acc Name
+								</div>
+							</div>
+							<div class="col">
+								<p class="text-end px-5 card-text" id="text_username_2">
+									*****.wam
+								</p>
+							</div>
+						</div>
+						<div class="px-3 row">
+							<div class="col">
+								<div class="mb-2 text-muted card-subtitle h6">
+									WAX Balance
+								</div>
+							</div>
+							<div class="col">
+								<p class="text-end px-4 card-text" id="text_wax_balance">
+									0 WAX
+								</p>
+							</div>
+						</div>
+						<div class="px-4 row">
+							<div class="col">
+								<div class="mb-2 text-muted card-subtitle h6">
+									TLM Balance
+								</div>
+							</div>
+							<div class="col">
+								<p class="text-end px-4 card-text" id="text_tlm_balance">
+									0 TLM
+								</p>
+							</div>
+						</div>
+						<div class="px-4 row">
+							<div class="d-flex">
+								<div class="text-muted">Land</div>
+								<p class="text-end px-5 card-text" id="mine_land">-</p>
+							</div>
+						</div>
+						<div class="px-4 row">
+							<div class="col">
+								<div class="mb-2 text-muted card-subtitle h6">Total Mine</div>
+							</div>
+							<div class="col">
+								<p class="text-end px-5 card-text" id="mine_total">0 TLM</p>
+							</div>
+						</div>
+						<div class="px-4 row">
+							<div class="col">
+								<div class="mb-2 text-muted card-subtitle h6">Last Mine</div>
+							</div>
+							<div class="col">
+								<p class="text-end px-5 card-text" id="mine_last">0 TLM</p>
+							</div>
+						</div>
+						<div class="px-4 row">
+							<div class="col">
+								<div class="mb-2 text-muted card-subtitle h6">
+									Last Mining
+								</div>
+							</div>
+							<div class="col">
+								<p class="text-end px-5 card-text" id="mine_last_time">
+									00:00:00
+								</p>
+							</div>
+						</div>
+						<div class="px-4 row">
+							<div class="col">
+								<div class="mb-2 text-muted card-subtitle h6">Cooldown</div>
+							</div>
+							<div class="col">
+								<p class="text-end px-5 card-text" id="mine_delay">
+									00:00:00
+								</p>
+							</div>
+						</div>
+						<div class="row pt-1 px-1">
+							<div class="px-4 pt-4 row" style="margin-top: -20px;">
+								<div class="col-10 d-flex">
+									<p>CPU:</p>
+									<progress class="nes-progress" style="height: 20px;" value="100" max="100" id="progress_cpu">
+										0%
+									</progress>
+								</div>
+								<div class="col-2">
+									<p class="text-end" id="progress_cpu_text">0%</p>
+								</div>
+							</div>
+							<div class="px-4 pt-4 row" style="margin-top: -20px;">
+								<div class="col-10 d-flex">
+									<p>NET:</p>
+									<progress class="nes-progress" style="height: 20px;" value="100" max="100" id="progress_net">
+										0%
+									</progress>
+								</div>
+								<div class="col-2">
+									<p class="text-end" id="progress_net_text">0%</p>
+								</div>
+							</div>
+							<div class="px-4 pt-4 row" style="margin-top: -20px;">
+								<div class="col-10 d-flex">
+									<p>RAM:</p>
+									<progress class="nes-progress" style="height: 20px;" value="100" max="100" id="progress_ram">
+										0%
+									</progress>
+								</div>
+								<div class="col-2">
+									<p class="text-end" id="progress_ram_text">0%</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			
+			<div class="pt-1 col-lg-7">
+				<div class="nes-container with-title mb-4">
+					<h3 class="title">Mining History</h3>
+					<textarea id="LoggerText2" class="nes-textarea" rows="5" disabled=""></textarea>
+				</div>
+				<div class="nes-container with-title mb-4">
+					<h3 class="title">NFT</h3>
+					<button type="button" class="nes-btn is-primary" id="btn_get_nft">
+						get nft</button><button type="button" class="nes-btn is-success" id="btn_claim_nft">
+						claim nft</button><textarea id="text_nft_list" class="nes-textarea mt-3" rows="5"></textarea>
+				</div>
+				<div class="nes-container with-title mb-4">
+					<h3 class="title">Wam Account Setting</h3>
+					<button type="button" class="nes-btn is-success" id="btn_get_data">
+						get data
+					</button>
+					<form class="">
+						<div class="pt-4 input-group row">
+							<div class="col-lg-3">
+								<button type="button" class="nes-btn is-primary">
+									Set Bag
+								</button>
+							</div>
+							<div class="col">
+								<input type="text" class="nes-input is-success form-control" id="text_set_bag_1" placeholder="1" />
+							</div>
+							<div class="col">
+								<input type="text" class="nes-input is-success form-control" id="text_set_bag_2" placeholder="2" />
+							</div>
+							<div class="col">
+								<input type="text" class="nes-input is-success form-control" id="text_set_bag_3" placeholder="3" />
+							</div>
+							<div class="col-lg-2">
+								<button type="button" class="nes-btn is-primary" id="btn_set_bag">
+									Save
+								</button>
+							</div>
+						</div>
+					</form>
+					<form class="">
+						<div class="pt-4 input-group row">
+							<div class="col-lg-3">
+								<button type="button" class="nes-btn is-primary">
+									Set Land
+								</button>
+							</div>
+							<div class="col">
+								<input type="text" class="nes-input is-success form-control" id="text_set_land" placeholder="Land" />
+							</div>
+							<div class="col-lg-2">
+								<button type="button" class="nes-btn is-primary" id="btn_set_land">
+									Save
+								</button>
+							</div>
+						</div>
+					</form>
+					<form class="">
+						<div class="pt-4 input-group row">
+							<div class="col-lg-4">
+								<button type="button" class="nes-btn is-primary">
+									Set Stake (CPU,NET)
+								</button>
+							</div>
+							<div class="col">
+								<input type="text" class="nes-input is-success form-control" id="text_stake_cpu" value="0.00000001" />
+							</div>
+							<div class="col">
+								<input type="text" class="nes-input is-success form-control" id="text_stake_net" value="0.00000000" />
+							</div>
+							<div class="col-lg-2">
+								<button type="button" class="nes-btn is-primary" id="btn_stake">
+									Stake
+								</button>
+							</div>
+						</div>
+					</form>
+					<form class="">
+						<div class="pt-4 input-group row">
+							<div class="col-4">
+								<button type="button" class="nes-btn is-primary">
+									Set Stake (RAM)
+								</button>
+							</div>
+							<div class="col">
+								<input type="text" class="nes-input is-success form-control" id="text_stake_ram" value="0.00000001" />
+							</div>
+							<div class="col-lg-2">
+								<button type="button" class="nes-btn is-primary" id="btn_buy_ram">
+									Stake
+								</button>
+							</div>
+						</div>
+					</form>
+					<form class="">
+						<div class="pt-4 input-group row">
+							<div class="col-lg-5">
+								<button type="button" class="nes-btn is-primary">
+									Swap TLM to WAX
+								</button>
+							</div>
+							<div class="col">
+								<input type="text" class="nes-input is-success form-control" id="text_swap" value="0.0001" />
+							</div>
+							<div class="col-lg-2">
+								<button type="button" class="nes-btn is-primary" id="btn_swap">
+									Swap
+								</button>
+							</div>
+						</div>
+					</form>
+					<div class="mt-5 mb-2 card-subtitle h6">
+						*swap by alcor exchange (Sell at best price)
+					</div>
+					<div class="mb-2 text-muted card-subtitle h6">Assets tool</div>
+					<textarea id="text_assets_tool" class="nes-textarea" rows="6" disabled></textarea>
+				</div>
+				<div class="nes-container with-title mb-4">
+					<h3 class="title">Mine Setting</h3>
+					<div class="mt-4 card-subtitle h6">Blockchain Server</div>
+					<div class="nes-select">
+						<select required="" id="server_option">
+							<option value="0" selected="">wax.pink.gg</option>
+							<option value="1">wax.greymass.com</option>
+							<option value="2">api.waxsweden.org</option>
+							<option value="3">chain.wax.io</option>
+							<option value="4">wax.eosrio.io</option>
+						</select>
+					</div>
+					<div class="mt-4 card-subtitle h6">Miner</div>
+					<div class="nes-select">
+						<select required="" id="miner_option">
+							<option value="0" selected="">Local</option>
+							<option value="1">Ninja Miner (Free)</option>
+							<option value="2">Ninja Miner (VIP)</option>
+						</select>
+					</div>
+					<div class="mt-4 card-subtitle h6">CPU Limit (%):</div>
+					<input type="number" class="nes-input is-success form-control" id="nrl" value="95" />
+					<div class="mt-4 card-subtitle h6">CPU Wait Time (min):</div>
+					<input type="number" class="nes-input is-success form-control" id="nrt" value="1" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="pt-5 container">
+		<div class="pb-3 row">
+			<div class="col">
+				<h4>Port2Play---</h4>
+				<h5>Thanks to #Pusan #Oak #Yoyo #o0KuReNai0o #TeamNinja</h5>
+				<h5>
+					Server Mine by<a href="https://ninja-miner.com"> ninja-miner.com</a>
+				</h5>
+			</div>
+		</div>
+		<div class="row">
+			<p class="text-center">Copyright©2021. Port2Play.com</p>
+		</div>
+	</div>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
+	<script src="https://cdn.socket.io/4.0.1/socket.io.min.js"></script>
+	<script src="js/waxjs.js"></script>
+	<script src="js/bundle.js"></script>
+	<script src="js/message_handler.js"></script>
+	<script src="js/script.js"></script>
+</body>
+
+</html>

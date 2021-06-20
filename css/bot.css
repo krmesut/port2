@@ -1,0 +1,31 @@
+html,
+body,
+pre,
+code,
+kbd,
+samp {
+	
+	font-size: 13px !important
+}
+
+.css-zjphbf {
+	width: 100%;
+	display: flex;
+	align-items: flex-end
+}
+
+.css-zjphbf>h6 {
+	font-size: 12px;
+	opacity: .5;
+	padding-left: 5px;
+	transition-duration: 350ms
+}
+
+.css-zjphbf>h6:hover {
+	opacity: 1;
+	transition-duration: 150ms
+}
+
+.title {
+	margin: -2.2rem 0 1rem !important
+}
